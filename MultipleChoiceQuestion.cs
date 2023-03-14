@@ -11,13 +11,7 @@ namespace Interactive_Quiz_By_YatharthJain
 
         public MultipleChoiceQuestion() : base()
         {
-            _choices = new List<string> 
-            { 
-                "Lion",
-                "Elephant",
-                "Bear",
-                "Beaver"
-            };
+            
         }
     }
 }

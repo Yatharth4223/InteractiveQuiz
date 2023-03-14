@@ -14,7 +14,8 @@ namespace Interactive_Quiz_By_YatharthJain
 
         public string CorrectAnswer { get; set; }
 
-        protected List<string> _choices;
+        public List<string> _choices;
+
 
 
     }
