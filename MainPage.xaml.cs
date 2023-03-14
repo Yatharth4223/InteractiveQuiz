@@ -16,7 +16,7 @@ public partial class MainPage : ContentPage
         }
         catch(Exception ex)
         {
-            DisplayAlert("error", $"No more questions lef\nYour score is: {_quiz.Score}", "OK");
+            DisplayAlert("error", $"No more questions left\nYour score is: {_quiz.Score}", "OK");
         }
     }
 
@@ -29,54 +29,59 @@ public partial class MainPage : ContentPage
     {
         try
         {
-            if (_quiz.CurrentQuestionIndex == _quiz._totalQuestions)
+            if (_quiz.CurrentQuestionIndex >= _quiz._totalQuestions)
             {
                 throw new Exception();
             }
+            _chosenQuestion = _quiz.GetNextQuestion();
+
         }
         catch
         {
             DisplayAlert("message", $"Your score is: {_quiz.Score}", "OK");
         }
-        _chosenQuestion = _quiz.GetNextQuestion();
 
     }
 
     private void Option1_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        changeColor(Option1Button.Content.ToString());
+        changeColor(Option1Button);
+        Option1Button.IsChecked = false;
         RunQuiz();
     }
 
     private void Option2_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        changeColor(Option2Button.Content.ToString());
+        changeColor(Option2Button);
+        Option2Button.IsChecked = false;
         RunQuiz();
     }
 
     private void Option3_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        changeColor(Option3Button.Content.ToString());
+        changeColor(Option3Button);
+        Option3Button.IsChecked = false;
         RunQuiz();
     }
 
     private void Option4_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        changeColor(Option4Button.Content.ToString());
+        changeColor(Option4Button);
+        Option4Button.IsChecked = false;
         RunQuiz();
     }
 
-    private void changeColor(string userAnswer)
+    private void changeColor(RadioButton button)
     {
-        bool isCorrect = _quiz.CheckUserAnswer(userAnswer, _chosenQuestion);
+        bool isCorrect = _quiz.CheckUserAnswer(button.Content.ToString(), _chosenQuestion);
         if (isCorrect)
         {
             //this changes color to green
-            this.BackgroundColor = Color.FromRgb(0, 255, 0);
+            button.BackgroundColor = Color.FromRgb(0, 255, 0);
         }
 
         //This changes backgrounf to red
-        this.BackgroundColor = Color.FromRgb(255, 0, 0);
+        button.BackgroundColor = Color.FromRgb(255, 0, 0);
     }
 
     private void RunQuiz()

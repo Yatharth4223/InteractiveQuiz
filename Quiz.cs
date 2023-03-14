@@ -125,8 +125,8 @@ namespace Interactive_Quiz_By_YatharthJain
             {
                 throw new Exception("No more questions");
             }
-            
-            return GetQuestionWithoutAnswer();
+            Question chosenQuestion = GetQuestionWithoutAnswer();
+            return chosenQuestion;
 
         }
 
@@ -140,7 +140,7 @@ namespace Interactive_Quiz_By_YatharthJain
                     correctAnswer = k.CorrectAnswer;
                 }
             }
-            if (userAnswer == correctAnswer)
+            if (userAnswer.ToLower() == correctAnswer.ToLower())
             {
                 _score += chosenQuestion.Points;
                 return true;
